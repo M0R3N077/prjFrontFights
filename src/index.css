@@ -1,0 +1,270 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 0 70% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 0 70% 60%;
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 70% 60%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 7%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 0 70% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 0 70% 60%;
+  }
+
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+/* ========= GLOBAL ELEMENTS ========= */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* ========= CUSTOM SECTIONS ========= */
+@layer base {
+  .globe-container {
+    @apply w-full h-screen relative bg-black;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  @layer utilities {
+  .bg-martial-red {
+    --tw-bg-opacity: 1;
+    background-color: rgb(185 5 4 / var(--tw-bg-opacity));
+  }
+
+ 
+}
+
+  .location-marker {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .location-marker:hover {
+    transform: scale(1.2);
+  }
+
+  .martial-card {
+    @apply bg-gradient-to-br from-martial-dark to-martial;
+  }
+}
+
+/* ========= SCENE / CANVAS ========= */
+.scene-container {
+  @apply w-full h-screen relative overflow-hidden;
+  background: radial-gradient(circle at center, #0a2342 0%, #061529 100%);
+}
+
+.canvas-container {
+  @apply w-full h-screen transform-gpu;
+  transform-origin: center center;
+}
+
+/* ========= NAVIGATION ========= */
+.navigation-arrow {
+  @apply absolute top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 
+         backdrop-blur-md rounded-full p-4 cursor-pointer transition-all z-10 
+         border border-white/10 hover:border-white/30;
+}
+
+.navigation-arrow.left {
+  @apply left-6;
+}
+
+.navigation-arrow.right {
+  @apply right-6;
+}
+
+/* ========= PANELS ========= */
+.info-panel {
+  @apply absolute bottom-32 left-8 max-w-md z-10;
+}
+
+.control-panel {
+  @apply absolute top-8 right-8 flex flex-col gap-2 z-20;
+}
+
+.control-btn {
+  @apply bg-black/30 backdrop-blur-md border-white/20 text-white 
+         hover:bg-black/50 hover:border-white/40 transition-all 
+         hover:scale-110;
+}
+
+/* ========= RESPONSIVE ========= */
+@media (max-width: 768px) {
+  .info-panel {
+    @apply left-4 right-4 mx-auto max-w-[90%] bottom-24;
+  }
+
+  .navigation-arrow {
+    @apply p-3;
+  }
+
+  .control-panel {
+    @apply flex-row top-auto bottom-16 right-4;
+  }
+}
+
+/* ========= CANVAS INTERACTION ========= */
+canvas {
+  cursor: grab;
+}
+
+canvas:active {
+  cursor: grabbing;
+}
+
+/* ========= DECORATIVE ELEMENTS ========= */
+.scene-container::before,
+.scene-container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  z-index: 5;
+}
+
+.scene-container::before {
+  top: 0;
+}
+
+.scene-container::after {
+  bottom: 0;
+}
+
+/* ========= GLASSMORPHISM ========= */
+.glassmorphism {
+  @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-lg;
+}
+
+  .globe-container {
+    width: 100%;
+    height: 100vh;
+    background-color: #000000;
+    position: relative;
+  }
+
+  .location-marker {
+    cursor: pointer;
+    transition: scale 0.2s ease;
+  }
+
+  .location-marker:hover {
+    scale: 1.2;
+  }
+
+  
+
+  .martial-card {
+    @apply bg-gradient-to-br from-martial-dark to-martial;
+  }
+  
+/* Pixel art border effect */
+.pixel-border {
+  @apply relative;
+  box-shadow: 0 0 0 2px #000;
+  image-rendering: pixelated;
+}
+
+.pixel-border:before {
+  content: "";
+  @apply absolute inset-0;
+  box-shadow: inset 0 0 0 2px #fff;
+  pointer-events: none;
+}
+
+/* Timeline slider styling */
+.timeline-track {
+  @apply h-2 bg-white rounded-full relative;
+}
+
+.timeline-thumb {
+  @apply w-5 h-10 bg-martial-red absolute -top-4 -translate-x-1/2 cursor-pointer rounded;
+}
+
+.timeline-marker {
+  @apply w-1 h-6 bg-white absolute bottom-0 -translate-x-1/2;
+}
+
+.timeline-marker.active {
+  @apply bg-martial-red;
+}

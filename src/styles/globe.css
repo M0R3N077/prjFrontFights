@@ -1,0 +1,187 @@
+
+.globe-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-color: #000;
+  overflow: hidden;
+}
+
+.marker-tooltip {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.1);
+  z-index: 1000;
+  width: auto;
+  max-width: 120px;
+}
+
+.instruction-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 8px 16px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Glow effect for markers */
+.marker-glow {
+  filter: drop-shadow(0 0 5px rgba(255, 58, 58, 0.8));
+}
+
+/* Loading screen animation */
+@keyframes gloveRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.glove-rotate {
+  animation: gloveRotate 2s linear infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* Hover effect for nav buttons */
+.nav-button {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-button::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ff3a3a;
+  transition: all 0.3s ease;
+}
+
+.nav-button:hover::after {
+  border-radius: 4px;
+  height: 4px;
+}
+
+/* Search bar styling */
+.search-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  z-index: 50;
+}
+
+.search-input {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 10px 20px;
+  padding-left: 42px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: #ff3a3a;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 58, 58, 0.3);
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+}
+
+/* Login button styling */
+.login-button {
+  background-color: #ff3a3a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 20px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.login-button:hover {
+  background-color: #cc2a2a;
+}
+
+/* Profile icon styling */
+.profile-icon {
+  width: 32px;
+  height: 32px;
+  background-color: rgba(255, 58, 58, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.profile-icon:hover {
+  background-color: rgba(255, 58, 58, 0.4);
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+/* Full screen background */
+.stars-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: black;
+}
