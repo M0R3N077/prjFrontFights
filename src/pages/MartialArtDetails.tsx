@@ -4,7 +4,7 @@ import Navbar from '../components/layout/Navbar';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/CardMartial';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/martialCard';
 import { Badge } from '@/components/ui/badge';
 import { martialArts } from '@/data/globeData';
 import { useAuth } from '@/contexts/AuthContext';

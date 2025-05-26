@@ -62,7 +62,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[url('background.jpg')] bg-cover bg-center flex items-center">
+    <div className="min-h-screen bg-[url('backgroundlr.jpg')] bg-cover bg-center flex items-center">
       <Navbar />
       <div className="container mx-auto py-20 px-4 flex flex-col items-center justify-center h-full">
         <div className="w-full max-w-md border rounded-xl p-8 bg-black/50">
