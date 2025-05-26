@@ -62,8 +62,9 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[url('backgroundlr.jpg')] bg-cover bg-center flex items-center">
+    <div>
       <Navbar />
+    <div className="min-h-screen bg-[url(backgroundlr.jpg)] bg-cover bg-center flex items-center">
       <div className="container mx-auto py-20 px-4 flex flex-col items-center justify-center h-full">
         <div className="w-full max-w-md border rounded-xl p-8 bg-black/50">
         <div className='w-full flex justify-center items-center mb-9'>
@@ -133,6 +134,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+    </div>  
   );
 };
 
