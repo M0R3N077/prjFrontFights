@@ -198,7 +198,7 @@ const FindGymsPage = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      <div className="container mx-auto pt-24 pb-16 px-4">
+      <div className="container mx-auto pt-36 sm:pt-24 pb-16 px-4">
         <div className="flex items-center gap-2 mb-8">
           <Link to={`/martial-art/${id}`} className="hover:bg-black/20 p-2 rounded-full transition-colors">
             <ChevronLeft size={20} />

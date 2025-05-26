@@ -119,7 +119,7 @@ const MartialArtDetails = () => {
       };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-hidden">
       <Navbar />
       
       <div 
@@ -132,7 +132,7 @@ const MartialArtDetails = () => {
         }}
       >
         <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 text-center px-4">
+        <div className="relative z-10 text-center mt-28 sm:mt-0 px-4">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-2">{martialArt.name}</h1>
           <p className="text-xl text-white  opacity-90">{martialArt.country} • {origin}</p>
         </div>
@@ -444,25 +444,26 @@ const MartialArtDetails = () => {
           </Card>
           
           {/* Botões de Ação */}
-          <div className="space-y-4 mb-12">
-            <Link to={`/fight-social/${id}`}>
-              <Button 
-                variant="default" 
-                className="w-full py-6 text-lg"
-              >
-                Vote em enquetes e descubra a opinião dos outros usuários
-              </Button>
-            </Link>
-            
-            <Link to={`/find-gyms/${id}`}>
-              <Button 
-                variant="outline" 
-                className="w-full py-6 text-lg"
-              >
-                Encontrar Academias Próximas
-              </Button>
-            </Link>
-          </div>
+          <div className="w-full px-4 mx-auto space-y-4 mb-12 flex flex-col">
+  <Link to={`/fight-social/${id}`}>
+    <Button 
+      variant="default" 
+      className="w-full h-full py-3 text-base sm:text-lg break-words whitespace-normal"
+    >
+      Vote em enquetes e descubra a opinião dos outros usuários
+    </Button>
+  </Link>
+
+  <Link to={`/find-gyms/${id}`}>
+    <Button 
+      variant="outline" 
+      className="w-full h-full py-3 text-base sm:text-lg break-words whitespace-normal"
+    >
+      Encontrar Academias Próximas
+    </Button>
+  </Link>
+</div>
+
           
           <div className="text-center">
             <Link to="/">

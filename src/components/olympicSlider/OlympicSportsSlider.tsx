@@ -24,48 +24,39 @@ const OlympicSportsSlider = () => {
 
   // Safely try to preload all models upfront to improve loading performance
   useEffect(() => {
-    const preloadModels = async () => {
+  const errors: string[] = [];
+
+  // Preload all models diretamente — sem promessas nem async
+  olympicCombatSports.forEach((sport) => {
+    try {
+      useGLTF.preload(sport.modelPath);
+      console.log(`Preloaded model: ${sport.modelPath}`);
+    } catch (err: any) {
+      const errorMessage = `Failed to preload model for ${sport.name}: ${err.message}`;
+      console.warn(errorMessage);
+      errors.push(errorMessage);
+    }
+  });
+
+  // Salva erros, se houver
+  if (errors.length > 0) {
+    setLoadErrors(errors);
+  }
+
+  // Considera que os modelos foram carregados (mesmo que com erros)
+  setModelsLoaded(true);
+
+  // Cleanup quando o componente for desmontado
+  return () => {
+    olympicCombatSports.forEach((sport) => {
       try {
-        // Create a promise for each model load attempt
-        const loadPromises = olympicCombatSports.map(sport => {
-          return new Promise<void>((resolve) => {
-            try {
-              // Try to preload the model
-              useGLTF.preload(sport.modelPath);
-              console.log(`Preloaded model: ${sport.modelPath}`);
-            } catch (err) {
-              // Log error but continue - our Model3D component will handle the fallback
-              const errorMessage = `Failed to preload model for ${sport.name}`;
-              console.warn(`${errorMessage}: ${err.message}`);
-              setLoadErrors(prev => [...prev, errorMessage]);
-            }
-            resolve();
-          });
-        });
-
-        // Wait for all preload attempts to complete
-        await Promise.all(loadPromises);
-        setModelsLoaded(true);
-      } catch (error) {
-        console.error("Error during model preloading:", error);
-        // Consider models "loaded" even if there were errors, so the app can proceed
-        setModelsLoaded(true);
+        useGLTF.clear(sport.modelPath);
+      } catch (err: any) {
+        console.warn(`Could not clear model ${sport.modelPath}: ${err.message}`);
       }
-    };
-
-    preloadModels();
-
-    // Clean up on component unmount - safely try to clear models
-    return () => {
-      olympicCombatSports.forEach(sport => {
-        try {
-          useGLTF.clear(sport.modelPath);
-        } catch (err) {
-          console.warn(`Could not clear model ${sport.modelPath}: ${err.message}`);
-        }
-      });
-    };
-  }, []);
+    });
+  };
+}, []);
 
   const goNext = () => {
     if (isTransitioning) return;

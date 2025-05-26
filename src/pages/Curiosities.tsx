@@ -14,14 +14,14 @@ export default function CuriosidadesPage() {
   };
 
   return (
-    <div className="bg-background text-white min-h-screen px-6">
+    <div className="bg-background text-white min-h-screen w-full overflow-x-hidden">
       <Navbar />
       <header className="text-center pt-36 sm:pt-24 md:pt-10 mb-10">
         <h1 className="text-[39px] font-extrabold text-white">CURIOSIDADES</h1>
         <p className="text-red-500 text-2xl font-semibold mt-1">VOCÊ SABIA?</p>
       </header>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto overflow-hidden">
         {curiosidades.map((item) => (
           <div
             key={item.id}

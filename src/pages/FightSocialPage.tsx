@@ -282,7 +282,7 @@ const FightSocialPage = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      <div className="container mx-auto pt-24 px-4 pb-16">
+      <div className="container mx-auto pt-36 sm:pt-24 px-4 pb-16">
         <div className="flex flex-col md:flex-row gap-6">
           {/* Coluna lateral esquerda - Informações da luta */}
           <div className="md:w-1/4">
@@ -499,7 +499,7 @@ const FightSocialPage = () => {
               <h2 className="text-lg font-bold mb-3">Principais Lutadores</h2>
               <div className="space-y-3">
                 {/* Lista de lutadores da arte marcial */}
-                {(martialArt.fighters || [
+                {(martialArt.famousFighters || [
                   { name: "Fighter 1", record: "20-2", country: "Brasil" },
                   { name: "Fighter 2", record: "18-4", country: "EUA" },
                   { name: "Fighter 3", record: "15-1", country: "Japão" }

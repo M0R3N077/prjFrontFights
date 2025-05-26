@@ -75,14 +75,18 @@ const Register = () => {
   };
 
   return (
-    <div>
+   <div className="bg-[url('/backgroundlr.jpg')] bg-cover bg-center h-screen">
       <Navbar />
-    <div className="min-h-screen bg-[url(backgroundlr.jpg)] bg-cover bg-center flex items-center">
+    <div className="pt-20 sm:pt-0 flex items-center">
       <div className="container mx-auto py-20 px-4 flex flex-col items-center">
-        <div className="w-full max-w-md border rounded-xl p-8 bg-black/80">
-          <div className='w-full flex justify-center items-center mb-9'>
+        <div className="w-full max-w-md border rounded-xl p-8 bg-black/50">
+           <div className='sm:w-full sm:flex sm:justify-center sm:items-center sm:mb-9 hidden'>
             <img src={logo} alt="Luvas de Boxe" className='w-44' />
             </div>
+
+         <div className='w-full flex justify-center items-center mb-9 sm:hidden'>
+            <h1 className="text-3xl font-bold">CADASTRAR</h1>
+            </div>    
 
           <form onSubmit={handleSubmit}>
             <div className="space-y-6">
