@@ -16,9 +16,7 @@ const MartialArtsTimeline: React.FC = () => {
     const backgroundMap: { [key: string]: string } = {
       "ancient-arena.jpg": "url('/timeline/backgrounds/ancient-arena.jpg')",
       "temple.jpg": "url('/timeline/backgrounds/temple.jpg')",
-      "dojo.jpg": "url('/timeline/backgrounds/dojo.jpg')",
-      "dojo-karate.jpg": "url('/timeline/backgrounds/dojo-karate.jpg')",
-      "octagon.jpg": "url('/timeline/backgrounds/octagon.jpg')",
+      "jj.jpg": "url('/timeline/backgrounds/jj.jpg')",
       "pancrariogr.jpg": "url('/timeline/backgrounds/pancrariogr.jpg')",
       "kungfu.jpg": "url('/timeline/backgrounds/kungfu.jpg')",
       "fencing.jpg": "url('/timeline/backgrounds/fencing.jpg')",
@@ -27,6 +25,7 @@ const MartialArtsTimeline: React.FC = () => {
       "samurai.jpg": "url('/timeline/backgrounds/samurai.jpg')",
       "capoeira.jpg": "url('/timeline/backgrounds/capoeira.jpg')",
       "karate.jpg": "url('/timeline/backgrounds/karate.jpg')",
+      "dojo-judo.jpg": "url('/timeline/backgrounds/dojo-judo.jpg')",
       "olympic.jpg": "url('/timeline/backgrounds/olympic.jpg')",
       "bartitsu.jpg": "url('/timeline/backgrounds/bartitsu.jpg')",
       "bjj.jpg": "url('/timeline/backgrounds/bjj.jpg')",
@@ -39,9 +38,9 @@ const MartialArtsTimeline: React.FC = () => {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col justify-center items-center relative">
+    <div className="w-full min-h-screen flex flex-col items-center relative">
     <Navbar />
-    <div className="text-white text-4xl z-20 md:text-6xl font-bold transition-all duration-700 ease-in-out animate-fade-in">
+    <div className="text-white lg:mt-0 md:mt-14 mt-40 text-4xl z-20 md:text-6xl font-bold sm:pt-10 transition-all duration-700 ease-in-out animate-fade-in">
     <h1>LINHA DO TEMPO</h1>
     </div>
   {/* 🔹 Imagem de Fundo */}
@@ -57,7 +56,7 @@ const MartialArtsTimeline: React.FC = () => {
   <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
 
   {/* 🔹 Conteúdo acima de tudo */}
-  <div className="relative z-20 w-full flex flex-col justify-center mt-20 items-center">
+  <div className="relative z-20 w-full flex flex-col justify-center mt-10 sm:mt-20 items-center">
     <div className="max-w-3xl w-full px-4 md:px-8 flex flex-col ">
       <div className="bg-black/10 p-6 md:p-8 rounded-2xl border-[5px] border-gray-100/20 relative transition-all duration-700 ease-in-out">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">

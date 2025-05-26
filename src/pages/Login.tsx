@@ -62,14 +62,13 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[url('background.jpg')] bg-cover bg-center flex items-center">
       <Navbar />
       <div className="container mx-auto py-20 px-4 flex flex-col items-center justify-center h-full">
-        <div className="w-full max-w-md border border-martial rounded-xl p-8 bg-black/80">
-        <div className='w-full flex justify-center items-center'>
+        <div className="w-full max-w-md border rounded-xl p-8 bg-black/50">
+        <div className='w-full flex justify-center items-center mb-9'>
             <img src={logo} alt="Luvas de Boxe" className='w-44' />
             </div>
-          <h1 className="text-3xl font-bold text-center mb-10">Login</h1>
 
           <form onSubmit={handleSubmit}>
             <div className="space-y-6">
@@ -127,7 +126,7 @@ const Login = () => {
             <p>
               Não tem uma conta?{" "}
               <Link to="/register" className="text-martial hover:underline">
-                Registre-se
+                Cadastre-se
               </Link>
             </p>
           </div>

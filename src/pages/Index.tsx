@@ -1,13 +1,12 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GlobeScene from '../components/globe/GlobeScene';
 import LoadingScreen from '../components/loading/LoadingScreen';
+import BurgerMenu from '../components/ui/menuBurger';
 import { Search } from 'lucide-react';
 import { martialArts } from '@/data/globeData';
 import logo from '../../public/logos/whiteLogo.png';
 import { useAuth } from '@/contexts/AuthContext';
-
 
 const Index = () => {
   const navigate = useNavigate();
@@ -81,95 +80,97 @@ const Index = () => {
   console.log("Rendering main screen");
   return (
     <div className="min-h-screen w-full overflow-hidden">
-
-        <div className="relative w-full h-screen">
-          {/* Globe Scene - Garantindo que eventos do mouse sejam capturados */}
-          <div className="absolute inset-0">
-            <GlobeScene onMarkerClick={handleMarkerClick} targetMartialArtId={targetMartialArt} />
-          </div>
-          
-          {/* Top bar with centered search and login */}
-          <div className="search-container z-20">
-            <form onSubmit={handleSearch} className="relative">
-              <input
-                ref={searchInputRef}
-                type="text"
-                placeholder="Buscar luta..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                onFocus={handleSearchFocus}
-                onBlur={handleSearchBlur}
-                className={`search-input ${searchActive ? 'active' : ''}`}
-              />
-              <Search className="search-icon" size={18} />
-            </form>
-          </div>
-          
-          {/* Login and profile buttons */}
-          <div className="fixed top-7 right-12 flex items-center gap-4 z-50">
-            {isAuthenticated ? (
+      <div className="relative w-full h-screen">
+        {/* Globe Scene - Garantindo que eventos do mouse sejam capturados */}
+        <div className="absolute inset-0">
+          <GlobeScene onMarkerClick={handleMarkerClick} targetMartialArtId={targetMartialArt} />
+        </div>
+        
+        {/* Top bar with centered search and login */}
+        <div className='w-full flex justify-start lg:justify-center pl-3 pt-5 '>
+        <div className="w-1/3 z-20 ">
+          <form onSubmit={handleSearch} className="relative ">
+            <input
+              ref={searchInputRef}
+              type="text"
+              placeholder="Buscar luta..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onFocus={handleSearchFocus}
+              onBlur={handleSearchBlur}
+              className={`search-input ${searchActive ? 'active' : ''}`}
+            />
+            <Search className="search-icon" size={18} />
+          </form>
+        </div>
+        </div>
+        
+        {/* Login and profile buttons - Responsive */}
+        <div className="fixed flex flex-row top-20 right-3 sm:top-7 md:top-6 sm:right-16  items-center gap-2 sm:gap-4 z-50">
+          {isAuthenticated ? (
             <>
-              <div className="text-white">Olá, {user?.name}</div>
-             <button 
-              className="bg-red-700 py-2 px-7 font-semibold text-lg text-white rounded-full hover:bg-white hover:text-red-600 "
-              onClick={logout}
-            >
-              Sair
-            </button>
-            <div 
-              className=" p-2 font-semibold cursor-pointer rounded-full hover:bg-white"
-              onClick={() => navigate('/profile')}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="red" stroke="red"  strokeLinecap="round" strokeLinejoin="round" >
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
-            </div>
+              <div className="text-white text-sm sm:text-base hidden sm:block">Olá, {user?.name}</div>
+              <button 
+                className="bg-red-700 py-1 px-3 sm:py-2 sm:px-7 font-semibold text-sm sm:text-lg text-white rounded-full hover:bg-white hover:text-red-600 transition-colors"
+                onClick={logout}
+              >
+                Sair
+              </button>
+              <div 
+                className="p-1 sm:p-2 font-semibold cursor-pointer rounded-full hover:bg-white transition-colors"
+                onClick={() => navigate('/profile')}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" className="sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="red" stroke="red" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
             </>
           ) : (
             <>
-             <button 
-              className="bg-red-700 py-2 px-7 font-semibold text-lg text-white rounded-full hover:bg-white hover:text-red-600 "
-              onClick={() => navigate('/login')}
-            >
-              ENTRAR
-            </button>
-            <div 
-              className=" p-2 font-semibold cursor-pointer rounded-full hover:bg-white"
-              onClick={() => navigate('/profile')}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="red" stroke="red"  strokeLinecap="round" strokeLinejoin="round" >
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
-            </div>
+              <button 
+                className="bg-red-700 py-1 px-3 sm:py-2 sm:px-7 font-semibold text-sm sm:text-lg text-white rounded-full hover:bg-white hover:text-red-600 transition-colors"
+                onClick={() => navigate('/login')}
+              >
+                ENTRAR
+              </button>
+              <div 
+                className="p-1 sm:p-2 font-semibold cursor-pointer rounded-full hover:bg-white transition-colors"
+                onClick={() => navigate('/profile')}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" className="sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="red" stroke="red" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
             </>
           )}
-            
+        </div>
+        
+        {/* Navigation options - Desktop only */}
+        <ul className="absolute right-20 top-1/2 transform -translate-y-1/2 flex-col gap-12 z-10 hidden lg:flex">
+          <NavButton label="JOGO" />
+          <NavButton label="OLIMPÍADAS" onClick={() => navigate('/olympic-fighting')} />
+          <NavButton label="CURIOSIDADES" onClick={() => navigate('/curiosities')} />
+          <NavButton label="LINHA DO TEMPO" onClick={() => navigate('/timeline')} />
+        </ul>
 
-          </div>
-          
-          {/* Navigation options on right side */}
-
-          <ul className="absolute right-20 top-1/2 transform -translate-y-1/2 flex flex-col gap-12 z-10">
-            <NavButton label="JOGO" />
-            <NavButton label="OLIMPÍADAS" onClick={() => navigate('/olympic-fighting')}/>
-            <NavButton label="CURIOSIDADES" onClick={() => navigate('/curiosities')}/>
-            <NavButton label="LINHA DO TEMPO" onClick={() => navigate('/timeline')} />
-          </ul>
-          
-          {/* Logo at bottom right */}
-
-          <div className="absolute right-12 bottom-8 z-10">
-            <img src={logo} alt="Logo" className="w-32" />
-
-          </div>
-          
-          <div className="instruction-hint z-20 pointer-events-none">
-            Gire o globo com o mouse para explorar mais lutas
-          </div>
+        {/* Mobile burger menu */}
+        <div className="fixed top-6 right-2 z-50 lg:hidden">
+          <BurgerMenu />
+        </div>
+        
+        {/* Logo at bottom - Responsive */}
+        <div className="absolute right-4 bottom-4 sm:right-12 sm:bottom-8 z-10">
+          <img src={logo} alt="Logo" className="w-20 sm:w-32" />
+        </div>
+        
+        {/* Instruction hint - Responsive */}
+        <div className="instruction-hint z-20 pointer-events-none text-sm sm:text-base px-4 sm:px-0">
+          Gire o globo com o mouse para explorar mais lutas
         </div>
       </div>
+    </div>
   );
 };
 
@@ -197,6 +198,5 @@ const NavButton = ({ label, onClick }: { label: string; onClick?: () => void; })
     </button>
   );
 };
-
 
 export default Index;

@@ -6,6 +6,8 @@ import { toast } from "@/hooks/use-toast";
 import Navbar from "../components/layout/Navbar";
 import { useAuth } from "@/contexts/AuthContext";
 import { Eye, EyeOff } from "lucide-react";
+import logo from "../../public/logos/whiteLogo.png";
+
 
 const Register = () => {
   const navigate = useNavigate();
@@ -73,11 +75,13 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[url('background.jpg')] bg-cover bg-center flex items-center">
       <Navbar />
       <div className="container mx-auto py-20 px-4 flex flex-col items-center">
-        <div className="w-full max-w-md border border-martial rounded-xl p-8 bg-black/80">
-          <h1 className="text-3xl font-bold text-center mb-10">Registro</h1>
+        <div className="w-full max-w-md border rounded-xl p-8 bg-black/80">
+          <div className='w-full flex justify-center items-center mb-9'>
+            <img src={logo} alt="Luvas de Boxe" className='w-44' />
+            </div>
 
           <form onSubmit={handleSubmit}>
             <div className="space-y-6">
@@ -137,10 +141,10 @@ const Register = () => {
                 {loading ? (
                   <div className="flex items-center">
                     <div className="animate-spin w-4 h-4 border-2 border-white/50 border-t-white rounded-full mr-2"></div>
-                    Registrando...
+                    Cadastrando...
                   </div>
                 ) : (
-                  "REGISTRAR"
+                  "CADASTRAR"
                 )}
               </Button>
             </div>

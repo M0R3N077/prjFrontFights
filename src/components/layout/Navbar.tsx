@@ -18,27 +18,27 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`absolute top-0 left-0 w-full z-50 transition-all duration-300 ${
+    <nav className={`absolute w-full z-50 transition-all duration-300 ${
       isScrolled || location.pathname !== '/' 
         ? ' py-7' 
         : 'bg-transparent'
     }`}>
-      <div className="container mx-auto flex items-center justify-between">
+      <div className="container mx-auto flex flex-col sm:flex sm:flex-row sm:items-center sm:justify-between">
         {/* Logo no canto esquerdo */}
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex justify-center items-center mb-4">
           <img 
             src="/logos/whiteLogo.png" 
             alt="Logo" 
-            className="w-24 h-auto" 
+            className="w-28 h-auto" 
           />
         </Link>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 justify-between sm:justify-end sm:w-full text-lg  sm:text-lg">
           {isAuthenticated ? (
             <>
               <Link 
                 to="/" 
-                className="text-white hover:text-martial transition-colors"
+                className="text-white hover:text-martial  transition-colors"
               >
                 Voltar
               </Link>
@@ -68,7 +68,7 @@ const Navbar = () => {
               <Link to="/register">
                 <Button 
                   variant="outline" 
-                  className="border-martial text-white hover:bg-martial"
+                  className="border-martial text-white hover:bg-martial w-[90px]"
                 >
                   Cadastre-se
                 </Button>

@@ -14,9 +14,9 @@ export default function CuriosidadesPage() {
   };
 
   return (
-    <div className="bg-background text-white min-h-screen py-10 px-6">
+    <div className="bg-background text-white min-h-screen px-6">
       <Navbar />
-      <header className="text-center mb-10">
+      <header className="text-center pt-36 sm:pt-24 md:pt-10 mb-10">
         <h1 className="text-[39px] font-extrabold text-white">CURIOSIDADES</h1>
         <p className="text-red-500 text-2xl font-semibold mt-1">VOCÊ SABIA?</p>
       </header>

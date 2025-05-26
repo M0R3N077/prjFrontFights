@@ -30,7 +30,7 @@ export const timelineData: TimelineItem[] = [
     year: "2500 a.C",
     title: "Jiu Jitsu",
     description: "Originado no Japão, o jiu-jítsu é uma arte marcial baseada em alavancas, torções e imobilizações. Desenvolvido como forma de autodefesa por guerreiros samurais, ele permite que um lutador mais fraco derrote um adversário mais forte por meio da técnica. Sua influência foi decisiva para o surgimento do judô e do jiu-jítsu brasileiro.",
-    backgroundImage: "dojo.jpg",
+    backgroundImage: "jj.jpg",
     fighter: "/timeline/fighters/kimono1.png"
   },
   {
@@ -102,7 +102,7 @@ export const timelineData: TimelineItem[] = [
     year: "1882 d.C",
     title: "Judô",
     description: "O judô foi criado por Jigoro Kano como uma forma mais segura e educacional do jiu-jitsu tradicional. Enfatiza a técnica sobre a força, permitindo que um praticante derrote o adversário com alavancas e quedas. Mais do que um esporte, o judô visa formar o caráter e promover valores como respeito, humildade e perseverança.",
-    backgroundImage: "octagon.jpg",
+    backgroundImage: "dojo-judo.jpg",
     fighter: "/timeline/fighters/kimono2.png"
   },
   {

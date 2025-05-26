@@ -1,10 +1,10 @@
-
 import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { 
   PerspectiveCamera, 
   OrbitControls
 } from '@react-three/drei';
+import * as THREE from 'three';
 
 import { OlympicSport } from '../../data/OlympicSportsData';
 import Model3D from '../Model3D';
@@ -15,16 +15,13 @@ interface SportSceneProps {
 }
 
 const SportScene = ({ sport, isActive }: SportSceneProps) => {
-  // Early return if not active to avoid rendering inactive scenes
   if (!isActive) return null;
   
-  const modelRef = useRef(null);
-  const floorRef = useRef(null);
+  const modelRef = useRef<THREE.Group>(null);
+  const floorRef = useRef<THREE.Mesh>(null);
   const [rotation, setRotation] = useState(0);
 
-  // Standardized model configuration for each sport
   const getModelConfig = () => {
-    // Specific configurations for each model
     switch (sport.id) {
       case 'boxing':
         return { scale: 3, position: [0, -7, -10] as [number, number, number], floorColor: "#c82d2d" };
@@ -45,31 +42,25 @@ const SportScene = ({ sport, isActive }: SportSceneProps) => {
 
   const modelConfig = getModelConfig();
 
-  // Gentle automatic rotation effect
   useFrame((state) => {
     if (modelRef.current) {
-      // Apply very subtle automatic rotation
       modelRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.15) * 0.05 + rotation;
     }
     
     if (floorRef.current) {
-      // Subtle floor animation
       floorRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.03 - 3;
     }
   });
 
   return (
     <>
-      {/* Camera positioned for better view */}
       <PerspectiveCamera makeDefault position={[0, 2, 6]} fov={50} />
       
-      {/* Enhanced lighting setup */}
       <ambientLight intensity={0.8} />
       <directionalLight position={[5, 10, 5]} intensity={1.5} castShadow />
       <directionalLight position={[-5, -5, -5]} intensity={0.7} />
       <pointLight position={[0, 4, 0]} intensity={0.8} color={modelConfig.floorColor} />
  
-      {/* Model group with animation */}
       <group 
         ref={modelRef} 
         position={modelConfig.position}
@@ -82,14 +73,17 @@ const SportScene = ({ sport, isActive }: SportSceneProps) => {
         />
       </group>
       
-      {/* OrbitControls for interactive manual rotation with mouse */}
       <OrbitControls 
         enableZoom={true} 
         enablePan={false} 
+        enableRotate={true}
         minPolarAngle={Math.PI / 4}
         maxPolarAngle={Math.PI / 1.5}
-        dampingFactor={0.2}
+        dampingFactor={0.05}
         enableDamping={true}
+        autoRotate={false}
+        minDistance={3}
+        maxDistance={15}
       />
     </>
   );

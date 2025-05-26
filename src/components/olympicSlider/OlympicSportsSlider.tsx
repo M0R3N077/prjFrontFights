@@ -1,5 +1,6 @@
 
 import { useState, useEffect, Suspense } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Canvas } from '@react-three/fiber';
 import { useGLTF, Loader } from '@react-three/drei';
 import { olympicCombatSports } from '../../data/OlympicSportsData';
@@ -9,8 +10,11 @@ import { ArrowLeft, ArrowRight, RotateCw, ZoomIn, ZoomOut } from 'lucide-react';
 import { Button } from "../ui/buttonSlider";
 import { Link} from 'react-router-dom';
 import Navbar from '../layout/Navbar';
+import logo from '../../../public/logos/whiteLogo.png';
+import './OlympicSportsSlider.css';
 
 const OlympicSportsSlider = () => {
+   const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [modelsLoaded, setModelsLoaded] = useState(false);
@@ -116,13 +120,23 @@ const OlympicSportsSlider = () => {
     setZoomLevel(prev => Math.max(prev - 0.2, 0.6));
   };
 
+   const handleMarkerClick = (id: string) => {
+    navigate(`/martial-art/${id}`);
+  };
+
+
   return (
-    <div className="scene-container">
-      <Navbar />
-      {/* Glassmorphic Title */}
-      <div className="absolute top-8 left-0 right-0 z-10 text-center">
-        <div className="inline-block backdrop-blur-md bg-white/10 px-8 py-4 rounded-xl border border-white/20 shadow-lg">
-          <h1 className="text-5xl font-bold text-white drop-shadow-lg">
+    <div className="olympic-scene-container">
+      {/* Logo */}
+      <div className="olympic-logo cursor-pointer"
+      onClick={() => navigate('/')}>
+        <img src={logo} alt="Logo" className="w-20 sm:w-32" />
+      </div>
+
+      {/* Title */}
+      <div className="olympic-title">
+        <div className="olympic-title-content">
+          <h1 className="olympic-title-text">
             Modalidades Olímpicas de Luta
           </h1>
           
@@ -138,8 +152,8 @@ const OlympicSportsSlider = () => {
         </div>
       </div>
       
-      {/* 3D Canvas with improved settings */}
-      <div className="canvas-container" style={{ transform: `scale(${zoomLevel})`, transition: 'transform 0.3s ease' }}>
+      {/* 3D Canvas */}
+      <div className="olympic-canvas-container" style={{ transform: `scale(${zoomLevel})`, transition: 'transform 0.3s ease' }}>
         <Canvas 
           shadows 
           style={{ 
@@ -147,6 +161,7 @@ const OlympicSportsSlider = () => {
             width: '100%',
             height: '100vh',
             background: 'transparent',
+  
           }}
           camera={{ position: [0, 0, 10], fov: 50 }}
           dpr={[1, 2]}
@@ -167,46 +182,43 @@ const OlympicSportsSlider = () => {
         </Canvas>
       </div>
       
-      {/* Loading indicator */}
-      {/* <Loader /> */}
-      
-      {/* Info Panel with glassmorphism */}
+      {/* Info Panel */}
       <SportInfo sport={activeSport} isActive={!isTransitioning}  />
       
-      {/* Navigation Arrows - made larger and more visible */}
+      {/* Navigation Arrows */}
       <button 
-        className="navigation-arrow left" 
+        className="olympic-nav-arrow olympic-nav-left" 
         onClick={goPrev}
         disabled={isTransitioning}
       >
-        <ArrowLeft size={32}  className="text-white" />
+        <ArrowLeft size={24} className="text-white sm:w-8 sm:h-8" />
       </button>
       
       <button 
-        className="navigation-arrow right" 
+        className="olympic-nav-arrow olympic-nav-right" 
         onClick={goNext}
         disabled={isTransitioning}
       >
-        <ArrowRight size={32} className="text-white" />
+        <ArrowRight size={24} className="text-white sm:w-8 sm:h-8" />
       </button>
       
       {/* Control Panel */}
-      <div className="control-panel">
-        <Button onClick={zoomIn} variant="outline" size="icon" className="control-btn">
-          <ZoomIn className="h-4 w-4" />
+      <div className="olympic-control-panel">
+        <Button onClick={zoomIn} variant="outline" size="icon" className="olympic-control-btn">
+          <ZoomIn className="h-3 w-3 sm:h-4 sm:w-4" />
         </Button>
-        <Button onClick={zoomOut} variant="outline" size="icon" className="control-btn">
-          <ZoomOut className="h-4 w-4" />
+        <Button onClick={zoomOut} variant="outline" size="icon" className="olympic-control-btn">
+          <ZoomOut className="h-3 w-3 sm:h-4 sm:w-4" />
         </Button>
       </div>
       
       {/* Pagination indicator */}
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-2">
+      <div className="olympic-pagination">
         {olympicCombatSports.map((sport, index) => (
           <button
             key={sport.id}
-            className={`w-4 h-4 rounded-full transition-all ${
-              index === activeIndex ? 'bg-white scale-125' : 'bg-white/50'
+            className={`olympic-pagination-dot ${
+              index === activeIndex ? 'olympic-pagination-dot-active' : ''
             }`}
             onClick={() => {
               if (!isTransitioning) {
