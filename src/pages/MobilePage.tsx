@@ -1,6 +1,6 @@
 import { AlertTriangle } from 'lucide-react';
 
-const Mobile = () => {
+const MobilePage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-neutral-900 text-neutral-100 p-4">
       <div className="text-center space-y-6">
@@ -19,4 +19,4 @@ const Mobile = () => {
   );
 };
 
-export default Mobile;
+export default MobilePage;

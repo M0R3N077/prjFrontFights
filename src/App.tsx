@@ -15,7 +15,7 @@ import Curiosities from "./pages/Curiosities";
 import TimeLine from "./pages/TimeLine";
 import FightSocialPage from "./pages/FightSocialPage";
 import FindGymsPage from "./pages/FindGymsPage";
-import Mobile from "./pages/mobile";
+import Mobile from "./pages/MobilePage";
 import { AuthProvider } from "./contexts/AuthContext";
 
 const queryClient = new QueryClient();
