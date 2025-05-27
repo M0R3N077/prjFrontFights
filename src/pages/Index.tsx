@@ -53,9 +53,13 @@ const Index = () => {
     e.preventDefault();
     
     // Encontrar a arte marcial pelo nome
-    const foundArt = martialArts.find(
-      art => art.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+   const normalize = str =>
+  str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+const foundArt = martialArts.find(art =>
+  normalize(art.name).includes(normalize(searchTerm))
+);
+
     
     if (foundArt) {
       setTargetMartialArt(foundArt.id);

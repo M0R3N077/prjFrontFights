@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { MapPin, Search, ChevronLeft } from 'lucide-react';
@@ -9,15 +8,24 @@ import GymMap from '@/components/findGym/GymMap';
 import GymCard from '@/components/findGym/GymCard';
 import { searchNearbyPlaces, getPhotoUrl, calculateDistance } from '@/services/placesService';
 import Navbar from '@/components/layout/Navbar';
+import Footer from "@/components/layout/Footer";
 
 // Definição temporária para martialArts até que o arquivo real esteja disponível
 const martialArts = [
-  { id: "1", name: "Jiu-Jitsu" },
-  { id: "2", name: "Karatê" },
-  { id: "3", name: "Judô" },
-  { id: "4", name: "Muay Thai" },
-  { id: "5", name: "Boxe" },
-  { id: "6", name: "Taekwondo" }
+  { id: "1", name: "Capoeira" },
+  { id: "2", name: "Kung Fu" },
+  { id: "3", name: "Muay Thai" },
+  { id: "4", name: "Taekwondo" },
+  { id: "5", name: "Jiu-Jitsu" },
+  { id: "6", name: "Krav Maga" },
+  { id: "7", name: "Boxe" },
+  { id: "8", name: "Judô" },
+  { id: "9", name: "Karatê" },
+  { id: "10", name: "Kickboxing" },
+  { id: "11", name: "Luta Livre" },
+  { id: "12", name: "MMA" },
+  { id: "13", name: "Sumô" },
+  { id: "14", name: "Wrestling" },
 ];
 
 interface Gym {
@@ -44,10 +52,8 @@ const FindGymsPage = () => {
   const [selectedGymId, setSelectedGymId] = useState<string | null>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
   
-  // Encontrar a arte marcial com base no ID
   const martialArt = martialArts.find(art => art.id === id);
 
-  // Função para obter a localização do usuário
   const getUserLocation = () => {
     setIsLoading(true);
     if (navigator.geolocation) {
@@ -80,42 +86,30 @@ const FindGymsPage = () => {
     }
   };
 
-  // Busca academias próximas usando a API do Google Places
   const searchGymsNearby = async (location: { lat: number; lng: number }, query: string = '') => {
     try {
       setIsLoading(true);
-      
-      // Montando a palavra-chave de busca combinando o tipo de arte marcial com a consulta do usuário
       const keyword = `${martialArt?.name || 'arte marcial'} ${query}`.trim();
-      
-      console.log("Buscando academias com a palavra-chave:", keyword);
-      
-      // Chamada à API do Google Places através do nosso serviço
       const results = await searchNearbyPlaces({
         lat: location.lat,
         lng: location.lng,
-        type: 'gym', // Filtrando por academias/gyms
+        type: 'gym',
         keyword,
-        radius: 10000 // 10km de raio
+        radius: 10000
       });
-      
-      console.log("Resultados da busca:", results);
-      
-      // Processando os resultados para o formato esperado pelo componente
+
       const processedGyms = results.map(place => {
-        // Calculando a distância entre o usuário e a academia
         const distance = calculateDistance(
           location.lat,
           location.lng,
           place.geometry.location.lat,
           place.geometry.location.lng
         );
-        
-        // Preparando a URL da imagem se houver foto disponível
+
         const imageUrl = place.photos && place.photos.length > 0
           ? getPhotoUrl(place.photos[0].photo_reference)
           : undefined;
-        
+
         return {
           id: place.place_id,
           name: place.name,
@@ -131,14 +125,13 @@ const FindGymsPage = () => {
           }
         };
       });
-      
+
       setGyms(processedGyms);
-      
-      // Se encontrou academias, seleciona a primeira por padrão
+
       if (processedGyms.length > 0) {
         setSelectedGymId(processedGyms[0].id);
       }
-      
+
       setIsLoading(false);
     } catch (error) {
       console.error('Erro ao buscar academias:', error);
@@ -151,12 +144,10 @@ const FindGymsPage = () => {
     }
   };
 
-  // Efeito para obter a localização do usuário ao carregar a página
   useEffect(() => {
     getUserLocation();
   }, []);
 
-  // Função para lidar com a busca manual
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (userLocation) {
@@ -166,14 +157,12 @@ const FindGymsPage = () => {
     }
   };
 
-  // Função para abrir o Google Maps com direções para a academia selecionada
   const getDirections = (gym: Gym) => {
     if (!userLocation) return;
     const url = `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${gym.location.lat},${gym.location.lng}&travelmode=driving`;
     window.open(url, '_blank');
   };
 
-  // Preparando os marcadores para o mapa
   const mapMarkers = gyms.map(gym => ({
     id: gym.id,
     position: gym.location,
@@ -190,6 +179,7 @@ const FindGymsPage = () => {
             <Button>Voltar ao início</Button>
           </Link>
         </div>
+        <Footer />
       </div>
     );
   }
@@ -207,7 +197,6 @@ const FindGymsPage = () => {
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Coluna do mapa */}
           <div className="lg:col-span-2">
             <div className="w-full h-[400px] lg:h-[600px] rounded-xl border border-martial/30">
               {userLocation ? (
@@ -237,7 +226,6 @@ const FindGymsPage = () => {
             </div>
           </div>
           
-          {/* Coluna de academias */}
           <div>
             <div className="bg-black/20 rounded-xl border border-martial/30 p-4 mb-6">
               <form onSubmit={handleSearch} className="flex gap-2 mb-4">
@@ -266,10 +254,8 @@ const FindGymsPage = () => {
               </p>
             </div>
             
-            {/* Lista de academias */}
             <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2">
               {isLoading ? (
-                // Placeholders enquanto carregando
                 Array.from({ length: 3 }).map((_, i) => (
                   <div key={i} className="bg-black/20 rounded-xl border border-martial/30 p-4 animate-pulse">
                     <div className="h-4 bg-gray-600 rounded w-3/4 mb-3" />
@@ -308,6 +294,8 @@ const FindGymsPage = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };

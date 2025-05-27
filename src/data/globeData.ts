@@ -876,7 +876,7 @@ export const martialArts = [
   id: '13',
   name: 'Sumô',
   country: 'Japão',
-  coords: { lat: 36, lng: 140 },
+  coords: { lat: 36, lng: 142 },
   description: 'Luta tradicional japonesa onde o objetivo é empurrar o oponente para fora do ringue ou fazê-lo tocar o solo com outra parte do corpo que não os pés.',
   image: '/martial-arts/sumo.jpg',
   origin: 'Japão antigo',

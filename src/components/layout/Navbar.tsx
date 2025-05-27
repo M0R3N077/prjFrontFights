@@ -40,7 +40,7 @@ const Navbar = () => {
                 to="/" 
                 className="text-white hover:text-martial  transition-colors"
               >
-                Voltar
+                Início
               </Link>
               <div className="text-white">Olá, {user?.name}</div>
               <Button 
@@ -57,7 +57,7 @@ const Navbar = () => {
                 to="/" 
                 className="text-white hover:text-martial transition-colors"
               >
-                Voltar
+                Início
               </Link>
               <Link 
                 to="/login" 

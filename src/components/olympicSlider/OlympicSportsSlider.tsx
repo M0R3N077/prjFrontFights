@@ -8,9 +8,6 @@ import SportScene from './SportScene';
 import SportInfo from './SportInfo';
 import { ArrowLeft, ArrowRight, RotateCw, ZoomIn, ZoomOut } from 'lucide-react';
 import { Button } from "../ui/buttonSlider";
-import { Link} from 'react-router-dom';
-import Navbar from '../layout/Navbar';
-import logo from '../../../public/logos/whiteLogo.png';
 import './OlympicSportsSlider.css';
 
 const OlympicSportsSlider = () => {
@@ -118,16 +115,11 @@ const OlympicSportsSlider = () => {
 
   return (
     <div className="olympic-scene-container">
-      {/* Logo */}
-      <div className="olympic-logo cursor-pointer"
-      onClick={() => navigate('/')}>
-        <img src={logo} alt="Logo" className="w-20 sm:w-32" />
-      </div>
 
       {/* Title */}
-      <div className="olympic-title">
-        <div className="olympic-title-content">
-          <h1 className="olympic-title-text">
+      <div className="olympic-title mt-36 sm:mt-0 ">
+        <div className="olympic-title-content sm:w-1/2 sm:mr-20 md:mr-0 md:w-[800px]">
+          <h1 className="olympic-title-text ">
             Modalidades Olímpicas de Luta
           </h1>
           

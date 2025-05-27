@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/martia
 import { Badge } from '@/components/ui/badge';
 import { martialArts } from '@/data/globeData';
 import { useAuth } from '@/contexts/AuthContext';
+import Footer from "@/components/layout/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -476,6 +477,9 @@ const MartialArtDetails = () => {
           </div>
         </div>
       </div>
+
+       <Footer />
+       
     </div>
   );
 };

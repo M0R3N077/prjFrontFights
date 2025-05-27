@@ -3,8 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { Link } from 'react-router-dom';
 import { curiosidades } from '@/data/curiositiesData';
 import Navbar from "@/components/layout/Navbar";
-
-
+import Footer from "@/components/layout/Footer";
 
 export default function CuriosidadesPage() {
   const [aberto, setAberto] = useState<number | null>(null);
@@ -17,11 +16,11 @@ export default function CuriosidadesPage() {
     <div className="bg-background text-white min-h-screen w-full overflow-x-hidden">
       <Navbar />
       <header className="text-center pt-36 sm:pt-24 md:pt-10 mb-10">
-        <h1 className="text-[39px] font-extrabold text-white">CURIOSIDADES</h1>
+        <h1 className="lg:text-6xl text-4xl sm:text-4xl font-extrabold text-white">CURIOSIDADES</h1>
         <p className="text-red-500 text-2xl font-semibold mt-1">VOCÊ SABIA?</p>
       </header>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto overflow-hidden">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto p-10 overflow-hidden">
         {curiosidades.map((item) => (
           <div
             key={item.id}
@@ -47,6 +46,8 @@ export default function CuriosidadesPage() {
           </div>
         ))}
       </div>
+
+      <Footer /> {/* ✅ Uso do Footer aqui */}
     </div>
   );
 }

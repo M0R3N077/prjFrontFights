@@ -9,7 +9,6 @@ import NotFound from "./pages/NotFound";
 import MartialArtDetails from "./pages/MartialArtDetails";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import AddMartialArt from "./pages/AddMartialArt";
 import Profile from "./pages/Profile";
 import OlympicFighting from "./pages/OlympicFighting";
 import Curiosities from "./pages/Curiosities";
@@ -32,7 +31,6 @@ const App = () => (
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/martial-art/:id" element={<MartialArtDetails />} />
-            <Route path="/add-martial-art" element={<AddMartialArt />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/olympic-fighting" element={<OlympicFighting />} />
             <Route path="/curiosities" element={<Curiosities />} />

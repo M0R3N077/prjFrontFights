@@ -45,12 +45,12 @@ const Login = () => {
       
       toast({
         title: "Login realizado com sucesso!",
-        description: "Bem-vindo de volta ao Brawl Tec",
+        description: "Bem-vindo de volta ao Brawl Tech",
       });
       
       navigate("/");
     } catch (error: any) {
-      console.error("Erro no login:", error);
+      console.error("Erro no login:", "Credenciais inválidas");
       toast({
         title: "Erro no login",
         description: error.message || "Credenciais inválidas",

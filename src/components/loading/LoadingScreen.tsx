@@ -60,14 +60,17 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
     <div className={`fixed inset-0 bg-black flex flex-col items-center justify-center transition-opacity duration-800  ${loadingComplete ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
 
       <div className="mb-8 relative">
-        <Dumbbell 
-          className="text-martial w-20 h-20" 
+        <img 
+          src="/public/glove.jpeg"
+          alt="Boxing Glove" 
+          className="text-martial w-40 h-40"
           style={{ 
-            transform: `rotate(${rotation}deg)`,
-            transformOrigin: 'center',
-            filter: 'drop-shadow(0 0 8px rgba(255,0,0,0.7))'
-          }} 
-        />
+          transform: `rotate(${rotation}deg)`,
+          transformOrigin: 'center',
+          filter: 'drop-shadow(0 0 8px rgba(255,0,0,0.7))'
+  }} 
+/>
+
       </div>
       <div className="font-mono text-4xl md:text-6xl text-martial font-bold tracking-widest">
         {text}
