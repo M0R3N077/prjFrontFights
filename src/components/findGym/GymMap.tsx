@@ -18,7 +18,6 @@ interface GymMapProps {
   onMarkerClick?: (id: string) => void;
 }
 
-// Definimos um tipo para os refs para evitar o erro específico
 type GoogleMap = google.maps.Map;
 type GoogleMarker = google.maps.Marker;
 

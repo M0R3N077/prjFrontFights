@@ -11,7 +11,7 @@ const BurgerMenu = ({ className = '' }: BurgerMenuProps) => {
   const navigate = useNavigate();
 
   const menuItems = [
-    { label: 'JOGO', onClick: () => {} },
+    { label: 'JOGO', onClick: () => navigate('/mobile-game') },
     { label: 'OLIMPÍADAS', onClick: () => navigate('/olympic-fighting') },
     { label: 'CURIOSIDADES', onClick: () => navigate('/curiosities') },
     { label: 'LINHA DO TEMPO', onClick: () => navigate('/timeline') }

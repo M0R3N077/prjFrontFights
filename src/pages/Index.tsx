@@ -1,5 +1,7 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useIsMobile } from '@/hooks/use-mobile';
 import GlobeScene from '../components/globe/GlobeScene';
 import LoadingScreen from '../components/loading/LoadingScreen';
 import BurgerMenu from '../components/ui/menuBurger';
@@ -16,6 +18,7 @@ const Index = () => {
   const [targetMartialArt, setTargetMartialArt] = useState<string | null>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { isAuthenticated, user, logout } = useAuth();
+  const isMobile = useIsMobile();
   
   // Garantir que o carregamento seja encerrado corretamente
   useEffect(() => {
@@ -153,7 +156,11 @@ const foundArt = martialArts.find(art =>
         
         {/* Navigation options - Desktop only */}
         <ul className="absolute right-20 top-1/2 transform -translate-y-1/2 flex-col gap-12 z-10 hidden lg:flex">
-          <NavButton label="JOGO" />
+          <NavButton 
+            label="JOGO" 
+            mobileLink="/mobile-game" 
+            desktopLink="https://brawl-tec-game.netlify.app/"
+          />
           <NavButton label="OLIMPÍADAS" onClick={() => navigate('/olympic-fighting')} />
           <NavButton label="CURIOSIDADES" onClick={() => navigate('/curiosities')} />
           <NavButton label="LINHA DO TEMPO" onClick={() => navigate('/timeline')} />
@@ -179,13 +186,54 @@ const foundArt = martialArts.find(art =>
 };
 
 // Componente para os botões de navegação
-const NavButton = ({ label, onClick }: { label: string; onClick?: () => void; }) => {
+const NavButton = ({ 
+  label, 
+  onClick, 
+  mobileLink, 
+  desktopLink, 
+}: { 
+  label: string; 
+  onClick?: () => void; 
+  mobileLink?: string; 
+  desktopLink?: string; 
+}) => {
   const [hover, setHover] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+  const checkScreen = () => {
+    const mobile = window.innerWidth < 1024;
+    console.log("📏 Width:", window.innerWidth, "→ isMobile:", mobile);
+    setIsMobile(mobile);
+  };
+  checkScreen();
+  window.addEventListener('resize', checkScreen);
+  return () => window.removeEventListener('resize', checkScreen);
+}, []);
+
+
+  const handleClick = () => {
+    console.log("clicou");
+    
+      if (isMobile) {
+        console.log("Mobile detected 📱");
+        navigate(mobileLink);
+      } else {
+        console.log("window");
+        if (desktopLink.startsWith("http")) {
+          window.location.href = desktopLink;
+        } else {
+          navigate(desktopLink);
+        }
+      }
+    
+  };
   
   return (
     <button 
       className="relative group"
-      onClick={onClick}
+      onClick={handleClick}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >

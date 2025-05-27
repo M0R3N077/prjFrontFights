@@ -5,27 +5,16 @@ const MOBILE_BREAKPOINT = 768
 
 export function useIsMobile() {
   const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
-  const [windowWidth, setWindowWidth] = React.useState<number | undefined>(undefined)
 
   React.useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth
-      setWindowWidth(width)
-      setIsMobile(width < MOBILE_BREAKPOINT)
-    }
-    
-    // Configurar mediaquery listener
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
-    mql.addEventListener("change", handleResize)
-    
-    // Definir valores iniciais
-    handleResize()
-    
-    return () => mql.removeEventListener("change", handleResize)
+    const onChange = () => {
+      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+    }
+    mql.addEventListener("change", onChange)
+    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+    return () => mql.removeEventListener("change", onChange)
   }, [])
 
-  return {
-    isMobile: !!isMobile,
-    windowWidth
-  }
+  return !!isMobile
 }

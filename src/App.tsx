@@ -15,6 +15,7 @@ import Curiosities from "./pages/Curiosities";
 import TimeLine from "./pages/TimeLine";
 import FightSocialPage from "./pages/FightSocialPage";
 import FindGymsPage from "./pages/FindGymsPage";
+import Mobile from "./pages/mobile";
 import { AuthProvider } from "./contexts/AuthContext";
 
 const queryClient = new QueryClient();
@@ -37,6 +38,7 @@ const App = () => (
             <Route path="/timeline" element={<TimeLine />} />
             <Route path="/fight-social/:id" element={<FightSocialPage />} />
             <Route path="/find-gyms/:id" element={<FindGymsPage />} />
+            <Route path="/mobile-game" element={<Mobile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
