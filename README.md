@@ -1,73 +1,59 @@
-# Welcome to your Lovable project
+# 🥋 BrawlTech – Front-end
 
-## Project info
+**BrownTech** é uma plataforma interativa focada no mundo das **lutas**, combinando informação, entretenimento, redes sociais e até um jogo inspirado em Street Fighter. Este repositório contém **apenas o front-end** do projeto.
 
-**URL**: https://lovable.dev/projects/70fbd7a8-eb86-4189-ba41-917b67f43b77
+---
 
-## How can I edit this code?
+## 📸 Visão Geral
 
-There are several ways of editing your application.
+- **Tela de Loading Animada**: Animação inicial que prepara a experiência do usuário.
+- **Mapa 3D Interativo**: Um globo terrestre em 3D com pontos vermelhos indicando onde ocorrem lutas ao redor do mundo.
+- **Páginas de Lutas**: Ao clicar em um ponto do globo, o usuário é redirecionado para uma página específica da luta selecionada.
+- **Sistema de Chat e Interação**:
+  - Login e Cadastro
+  - Publicações
+  - Comentários
+  - Likes
+  - Enquetes
+- **Medalhas Olímpicas**:
+  - Slider com modelos 3D das medalhas
+  - Linha do tempo com a evolução das lutas ao longo da história
+- **Jogo Estilo Street Fighter**:
+  - Suporte para teclado e controle
+  - Lutas interativas integradas ao site
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/70fbd7a8-eb86-4189-ba41-917b67f43b77) and start prompting.
+## 🧪 Tecnologias Utilizadas
 
-Changes made via Lovable will be committed automatically to this repo.
+### ⚙️ Principais
 
-**Use your preferred IDE**
+- **React** – Biblioteca para criação de interfaces reativas
+- **Vite** – Ferramenta de build e desenvolvimento rápido
+- **TypeScript** – Superset do JavaScript com tipagem estática
+- **Tailwind CSS** – Framework utilitário para estilização
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 🎮 Gráficos & Interatividade
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Three.js** – Para renderização 3D do globo, medalhas e cenas
+- **GSAP (GreenSock Animation Platform)** – Para animações fluidas e responsivas
 
-Follow these steps:
+### 🔗 Integração com Back-end
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- **Axios** – Cliente HTTP para comunicação com a API do back-end
+- **Fast Reading** – Otimizações na leitura e carregamento de dados
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+---
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 🧭 Estrutura do Projeto
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/70fbd7a8-eb86-4189-ba41-917b67f43b77) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+```bash
+📁 src/
+ ┣ 📁 components/       # Componentes reutilizáveis (botões, cards, sliders, etc.)
+ ┣ 📁 pages/            # Páginas principais (Home, Lutas, Chat, Jogo, etc.)
+ ┣ 📁 assets/           # Imagens, modelos 3D, ícones
+ ┣ 📁 services/         # Serviços de API (Axios configurado)
+ ┣ 📁 hooks/            # Hooks customizados
+ ┣ 📁 contexts/         # Contextos de autenticação, tema, etc.
+ ┣ 📁 utils/            # Funções utilitárias
+ ┗ 📄 main.tsx          # Ponto de entrada do app
