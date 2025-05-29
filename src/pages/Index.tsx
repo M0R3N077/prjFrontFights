@@ -159,7 +159,7 @@ const foundArt = martialArts.find(art =>
           <NavButton 
             label="JOGO" 
             mobileLink="/mobile-game" 
-            desktopLink="https://brawl-tec-game.netlify.app/"
+            desktopLink="https://brawl-tec-jogo.netlify.app/"
           />
           <NavButton label="OLIMPÍADAS" onClick={() => navigate('/olympic-fighting')} />
           <NavButton label="CURIOSIDADES" onClick={() => navigate('/curiosities')} />
