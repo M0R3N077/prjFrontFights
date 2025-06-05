@@ -161,9 +161,9 @@ const foundArt = martialArts.find(art =>
             mobileLink="/mobile-game" 
             desktopLink="https://brawl-tec-jogo.netlify.app/"
           />
-          <NavButton label="OLIMPÍADAS" onClick={() => navigate('/olympic-fighting')} />
-          <NavButton label="CURIOSIDADES" onClick={() => navigate('/curiosities')} />
-          <NavButton label="LINHA DO TEMPO" onClick={() => navigate('/timeline')} />
+          <NavButton label="OLIMPÍADAS" desktopLink = '/olympic-fighting' />
+          <NavButton label="CURIOSIDADES" desktopLink = '/curiosities' />
+          <NavButton label="LINHA DO TEMPO" desktopLink = '/timeline' />
         </ul>
 
         {/* Mobile burger menu */}
